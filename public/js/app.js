@@ -20,7 +20,7 @@ String.prototype.escapeHTML = function() {
 }
 
 socket.on('connect',function(){
-    $messages.append("<p class='page-header'>You have successfully connected to the chatroom " + $chatroom.escapeHTML() + "</p>");
+    $messages.append("<div class='page-header text-center text-capitalize text-danger'><b>You have successfully connected to the chatroom " + $chatroom.escapeHTML() + "</b></div>");
 });
 
 socket.on('message',function(message){
