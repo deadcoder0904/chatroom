@@ -20,11 +20,12 @@ String.prototype.escapeHTML = function() {
 }
 
 socket.on('connect',function(){
-    $messages.append('<li class="list-group-item text-success page-header">' + $username.escapeHTML() + ' connected to the chatroom ' + $chatroom.escapeHTML() + "</li>");
+    $messages.append("<p class='page-header'>You have successfully connected to the chatroom " + $chatroom.escapeHTML() + "</p>");
 });
 
 socket.on('message',function(message){
-    $messages.append('<li class="list-group-item"><b>' + message.name + '</b> : <br> ' + message.text + '</li>');
+    var timestamp = moment.utc(message.timestamp).local();
+    $messages.append('<li class="list-group-item"><b>' + timestamp.format('ddd Do,MMM YYYY @ h:mm a') + '</b><br>' + message.name + ' : ' + message.text + '</li>');
 });
 
 $form.on('submit',function(event){
@@ -35,7 +36,7 @@ $form.on('submit',function(event){
             name: $username.escapeHTML(),
             text: $message.val().escapeHTML().trim()
         });
-        $messages.append('<li class="list-group-item"><b>' + $username.escapeHTML() + '</b> : <br> ' + $message.val().escapeHTML().trim() + '</li>');
+        //$messages.append('<li class="list-group-item"><b>' + $username.escapeHTML() + '</b> : <br> ' + $message.val().escapeHTML().trim() + '</li>');
         $message.val('');
     }
 });
