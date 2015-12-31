@@ -1,0 +1,17 @@
+{
+  "name": "chatroom",
+  "version": "1.0.0",
+  "description": "Chat in real-time with private CHATROOMS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "moment": "^2.10.6",
+    "socket.io": "^1.2.1"
+  }
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CHATROOM</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+    </head>
+    <body>
+        <div class="container vertical-align">
+            <div class="col-md-6 col-md-offset-3 well well-lg">
+                <h1 class="text-center text-success">JOIN CHATROOM</h1>
+                <form action="chat.html" autocomplete="off" spellcheck="false">
+                    <div class="form-group">
+                        <label for="username">UserName : </label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-user"></span>
+                            <input type="text" class="form-control" id="username" name="username"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="chatroom">ChatRoom : </label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-comment"></span>
+                            <input type="text" class="form-control" id="chatroom" name="chatroom"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="form-control btn btn-info" id="submit" value="Start Chat !"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
