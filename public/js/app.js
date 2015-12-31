@@ -11,8 +11,16 @@ function getParameterByName(name) {
     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 }
 
+String.prototype.escapeHTML = function() {
+    return this.replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 socket.on('connect',function(){
-    $messages.append('<li class="list-group-item text-success page-header">' + $username + ' connected to the chatroom ' + $chatroom + "</li>");
+    $messages.append('<li class="list-group-item text-success page-header">' + $username.escapeHTML() + ' connected to the chatroom ' + $chatroom.escapeHTML() + "</li>");
 });
 
 socket.on('message',function(message){
@@ -24,10 +32,10 @@ $form.on('submit',function(event){
     if($message.val().trim() !== '')
     {
         socket.emit('message',{
-            name: $username,
-            text: $message.val().trim()
+            name: $username.escapeHTML(),
+            text: $message.val().escapeHTML().trim()
         });
-        $messages.append('<li class="list-group-item"><b>' + $username + '</b> : <br> ' + $message.val().trim() + '</li>');
+        $messages.append('<li class="list-group-item"><b>' + $username.escapeHTML() + '</b> : <br> ' + $message.val().escapeHTML().trim() + '</li>');
         $message.val('');
     }
 });
