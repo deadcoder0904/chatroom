@@ -10,7 +10,7 @@
         <div class="container vertical-align">
             <div class="col-md-6 col-md-offset-3 well well-lg">
                 <h1 class="text-center text-success">JOIN CHATROOM</h1>
-                <form action="chat.html" autocomplete="off" spellcheck="false">
+                <form action="chat.html" autocomplete="off" spellcheck="false" id="user-form">
                     <div class="form-group">
                         <label for="username">UserName : </label>
                         <div class="input-group">
@@ -34,4 +34,22 @@
             </div>
         </div>
     </body>
+    <script src="js/jquery-2.1.4.js"></script>
+    <script type="text/javascript">
+    	var $form = $('#user-form');
+    	var $username = $form.find('input[name=username]');
+    	var $chatroom = $form.find('input[name=chatroom]');
+    	$form.on('submit',function(event){
+    		var flag = false;
+		    if($username.val().trim() === '')
+		    	if($chatroom.val().trim() === '')
+		    		flag = true,alert('Please enter the username and chatroom name, Punk');
+		    	else
+		    		flag = true,alert('Please enter the username, Punk');
+		    else 	if($chatroom.val().trim() === '')
+		    			flag = true,alert('Please enter the chatroom name, Punk');
+		if(flag)
+			event.preventDefault();
+		});
+    </script>
 </html>

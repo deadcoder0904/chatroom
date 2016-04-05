@@ -1,5 +1,6 @@
 var PORT = process.env.PORT || 3000;
 var express = require('express');
+var emoji = new require('emoji-translate')();
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -36,6 +37,7 @@ io.on('connection',function(socket){
     socket.on('message',function(message){
         message.timestamp = moment().valueOf();
         console.log(message.timestamp + ' ' + message.name + ' : ' + message.text);
+        message.text = emoji.translate(message.text);
         io.to(clientInfo[socket.id].chatroom).emit('message',message);
     });
 
