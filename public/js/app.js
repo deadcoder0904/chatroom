@@ -31,10 +31,28 @@ socket.on('connect',function(){
 
 socket.on('message',function(message){
     var timestamp = moment.utc(message.timestamp).local();
+    var low = 0;
+    var text;
     if(message.name === 'System')
         $messages.append('<li class="list-group-item" style="background-color: #6db2d1"><b>' + timestamp.format('ddd Do,MMM YYYY @ h:mm:ss a') + '</b><br>' + message.name + ' : ' + message.text + '</li>');
-    else
-        $messages.append('<li class="list-group-item"><b>' + timestamp.format('ddd Do,MMM YYYY @ h:mm:ss a') + '</b><br>' + message.name + ' : ' + message.text + '</li>');
+    else{
+        text = "<li class='list-group-item'><b>" + timestamp.format("ddd Do,MMM YYYY @ h:mm:ss a") + "</b><br>" + message.name + " : ";
+        if(message.text.length > 63)
+            {
+                text += "<br>";
+                for (var i = 0; i < message.text.length; i+=63) {
+                    text += message.text.substring(low,low+63) + "<br>";
+                    low = low + 63;
+                }
+            text += "</li>";
+            $messages.append(text);
+            }
+        else    
+            {
+                text += message.text + "</li>";
+                $messages.append(text);
+            }
+    }
 });
 
 $form.on('submit',function(event){

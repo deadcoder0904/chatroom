@@ -37,7 +37,10 @@ io.on('connection',function(socket){
     socket.on('message',function(message){
         message.timestamp = moment().valueOf();
         console.log(message.timestamp + ' ' + message.name + ' : ' + message.text);
-        message.text = emoji.translate(message.text);
+        temp = emoji.translate(message.text);
+        if(temp != "")
+            message.text = emoji.translate(message.text);
+        console.log(message.text);
         io.to(clientInfo[socket.id].chatroom).emit('message',message);
     });
 
