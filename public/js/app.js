@@ -65,5 +65,5 @@ $form.on('submit',function(event){
         });
         $message.val('');
     }
-    else alert('Please enter the message, Punk');
+    else alert('Please enter the message !!');
 });
