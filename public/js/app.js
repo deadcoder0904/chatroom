@@ -26,7 +26,7 @@ socket.on('connect',function(){
         name: $username,
         chatroom: $chatroom
     });
-    $messages.append("<div class='page-header text-center text-capitalize text-danger'><b>You have successfully connected to the chatroom " + $chatroom.escapeHTML() + "</b></div>");
+    $messages.append("<div class='page-header text-center text-capitalize text-danger' style='font-family: Symbola'><b>You have successfully connected to the chatroom " + $chatroom.escapeHTML() + "</b></div>");
 });
 
 socket.on('message',function(message){
@@ -34,9 +34,9 @@ socket.on('message',function(message){
     var low = 0;
     var text;
     if(message.name === 'System')
-        $messages.append('<li class="list-group-item" style="background-color: #6db2d1"><b>' + timestamp.format('ddd Do,MMM YYYY @ h:mm:ss a') + '</b><br>' + message.name + ' : ' + message.text + '</li>');
+        $messages.append('<li class="list-group-item" style="background-color: #6db2d1;font-family: Symbola;"><b>' + timestamp.format('ddd Do,MMM YYYY @ h:mm:ss a') + '</b><br>' + message.name + ' : ' + message.text + '</li>');
     else{
-        text = "<li class='list-group-item'><b>" + timestamp.format("ddd Do,MMM YYYY @ h:mm:ss a") + "</b><br>" + message.name + " : ";
+        text = "<li class='list-group-item' style='font-family: Symbola'><b>" + timestamp.format("ddd Do,MMM YYYY @ h:mm:ss a") + "</b><br>" + message.name + " : ";
         if(message.text.length > 63)
             {
                 text += "<br>";
